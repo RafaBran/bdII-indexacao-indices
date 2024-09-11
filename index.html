@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indexação em Banco de Dados</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Cabeçalho estilizado */
+        header {
+            background-color: #2980b9;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+
+        nav ul li {
+            margin: 0 1rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilos gerais da página */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #2980b9;
+            border-left: 5px solid #3498db;
+            padding-left: 0.5rem;
+        }
+
+        section p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        ul {
+            margin-left: 2rem;
+            list-style-type: square;
+        }
+
+        ul li {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        /* Botão de volta ao topo */
+        #back-to-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        #back-to-top:hover {
+            background-color: #2980b9;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #2980b9;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        footer a {
+            color: #f1c40f;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            main {
+                padding: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul li {
+                margin: 0;
+            }
+
+            section h2 {
+                font-size: 1.75rem;
+            }
+
+            section p, ul li {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Indexação em Banco de Dados</h1>
+        <nav>
+            <ul>
+                <li><a href="#introducao">Introdução</a></li>
+                <li><a href="#b-tree">Índice B-Tree</a></li>
+                <li><a href="#hash-index">Hash Index</a></li>
+                <li><a href="#bitmap">Bitmap</a></li>
+                <li><a href="#bitmap">Grupo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="introducao">
+            <h2>O que é Indexação?</h2>
+            <p>A indexação em banco de dados é uma técnica fundamental para otimizar o tempo de resposta de consultas, permitindo acessar dados de forma mais rápida. Ela cria estruturas auxiliares que facilitam a localização dos registros, sem precisar percorrer toda a tabela.</p>
+            <p>Sem indexação, uma consulta que envolve milhões de registros pode ser muito demorada, já que o sistema teria que verificar cada linha da tabela uma a uma.</p>
+        </section>
+
+        <section id="b-tree">
+            <h2>Índice B-Tree</h2>
+            <p>O índice B-Tree (Árvore-B) é uma das estruturas mais usadas para organizar dados de forma hierárquica. Ele é eficiente tanto para buscas por valores exatos quanto para consultas por intervalos. As principais características do B-Tree são:</p>
+            <ul>
+                <li>É uma árvore balanceada, garantindo tempo de busca uniforme.</li>
+                <li>Facilita buscas por intervalos de valores, como "maior que" ou "menor que".</li>
+                <li>Permite inserção e exclusão de dados de forma eficiente.</li>
+            </ul>
+            <p>Essa estrutura é amplamente usada em sistemas de banco de dados devido à sua flexibilidade e eficiência para lidar com grandes volumes de dados.</p>
+        </section>
+
+        <section id="hash-index">
+            <h2>Hash Index</h2>
+            <p>O Hash Index é baseado em uma função de hash que mapeia chaves diretamente para suas localizações no armazenamento. Isso torna as consultas por valores exatos extremamente rápidas. No entanto, ele não é ideal para buscas por intervalos, já que os dados não são organizados de forma ordenada.</p>
+            <ul>
+                <li>Alta eficiência para buscas exatas.</li>
+                <li>Não suporta consultas por intervalos.</li>
+                <li>Ideal para colunas com chaves exclusivas, como IDs de usuários.</li>
+            </ul>
+            <p>Esse tipo de índice é útil para casos onde as consultas são feitas por valores exatos, mas pode ser ineficaz em situações que envolvam consultas por intervalo.</p>
+        </section>
+
+        <section id="bitmap">
+            <h2>Bitmap</h2>
+            <p>O índice Bitmap é ideal para colunas que possuem poucos valores distintos, como status ou flags. Ele usa uma representação compacta, onde cada bit indica a presença ou ausência de um valor em uma linha. Esse tipo de índice é muito eficiente para consultas analíticas que envolvem múltiplos filtros combinados.</p>
+            <ul>
+                <li>Eficiência em consultas que envolvem múltiplos filtros.</li>
+                <li>Utiliza menos espaço em colunas com poucos valores repetidos.</li>
+                <li>Ideal para colunas com baixa cardinalidade, como status ou gênero.</li>
+            </ul>
+            <p>No entanto, o índice Bitmap pode não ser ideal para tabelas que passam por muitas atualizações, pois sua manutenção pode ser custosa.</p>
+        </section>
+        <section id="grupo">
+            <h2>Grupo</h2>
+            <ul>
+                <li>Gustavo Moreira Lopes</li>
+                <li>Rafael Brandão Neves</li>
+                <li>Renato</li>
+            </ul>
+        </section>
+    </main>
+
+    <button id="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <footer>
+    </footer>
+
+    <script>
+        // Função para voltar ao topo da página
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mostrar ou esconder o botão de voltar ao topo
+        window.onscroll = function() {
+            const button = document.getElementById('back-to-top');
+            if (document.documentElement.scrollTop > 200) {
+                button.style.display = 'block';
+            } else {
+                button.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>
